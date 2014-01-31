@@ -5157,5 +5157,61 @@ class Client(BaseClient):
         '''
 
         return self.request('listAlerts', args)
- 
 
+    def createTags(self, args={}):
+        '''
+	Creates resource tag(s)
+ 
+        args - A dictionary. The following are options for keys:
+		resourceids - list of resources to create the tags for
+		resourcetype - type of the resource
+		tags - Map of tags (key/value pairs) RE: tags[0].value, tags[0].key
+		customer - identifies client specific tag. When the value is not null, the tag can't be used by cloudStack code internally. optional
+        '''
+        if not 'resourceIds' in args:
+            raise RuntimeError("Missing required argument 'resourceIds'")
+        if not 'resourceType' in args:
+            raise RuntimeError("Missing required argument 'resourceType'")
+        if not 'tags[0].key' in args:
+            raise RuntimeError("Missing required argument 'tags[0].key'")
+        if not 'tags[0].value' in args:
+            raise RuntimeError("Missing required argument 'tags[0].value'")
+
+        return self.request('createTags', args)
+
+    def listTags(self, args={}):
+        '''
+	List resource tag(s)
+
+        args - A dictionary. The following are options for keys:
+		accountList  - resources by account. Must be used with the domainId parameter. Optional
+		customer - list by customer name. Optional
+		domainid - list only resources belonging to the domain specified. Optional
+		isrecursive - defaults to false, but if true, lists all resources from the parent specified by the domainId till leaves. Optional
+		key - list by key. Optional
+		keyword - List by keyword. Optional
+		listall - If set to false, list only resources belonging to the command's caller; if set to true - list resources that the caller is authorized to see. Default value is false. Optional
+		page - Optional
+		pagesize - Optional
+		projectid - list objects by project. Optional
+		resourceid - list by resource id. Optional
+		resourcetype - list by resource type. Optional
+		value - list by value. Optional
+        '''
+        return self.request('listTags', args)
+
+    def deleteTags(self, args={}):
+        '''
+        Delete resource tag(s)
+
+        args - A dictionary. The following are options for keys:
+                resourceids - list of resources to create the tags for
+                resourcetype - type of the resource
+                tags - Map of tags (key/value pairs). Optional
+        '''
+        if not 'resourceIds' in args:
+            raise RuntimeError("Missing required argument 'resourceIds'")
+        if not 'resourceType' in args:
+            raise RuntimeError("Missing required argument 'resourceType'")
+
+        return self.request('deleteTags', args)
