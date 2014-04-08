@@ -557,7 +557,38 @@ class Client(BaseClient):
             raise RuntimeError("Missing required argument 'lbdeviceid'")
 
         return self.request('listNetscalerLoadBalancerNetworks', args)
- 
+
+    def createLoadBalancer(self, args={}):
+        '''
+        Create a load-balancer instance
+        args - A dictionary. The following are options for keys:
+            algorithm - load balancer algorithm (source, roundrobin, leastconn)
+            name - name of the load balancer rule
+            instanceport - the TCP port of the virtual machine where the network traffic will be load balanced to
+            networkid - The guest network the Load Balancer will be created for
+            scheme - the load balancer scheme. Supported value in this release is Internal
+            sourceipaddressnetworkid - the network id of the source ip address
+            sourceport - the source port the network traffic will be load balanced from
+            description - (optional) the description of the Load Balancer
+            sourceipaddress - (optional) the source ip address the network traffic will be load balanced from
+        '''
+
+        if not 'algorithm' in args:
+            raise RuntimeError("Missing required argument 'algorithm'")
+        if not 'name' in args:
+            raise RuntimeError("Missing required argument 'name'")
+        if not 'instanceport' in args:
+            raise RuntimeError("Missing required argument 'instanceport'")
+        if not 'networkid' in args:
+            raise RuntimeError("Missing required argument 'networkid'")
+        if not 'scheme' in args:
+            raise RuntimeError("Missing required argument 'scheme'")
+        if not 'sourceipaddressnetworkid' in args:
+            raise RuntimeError("Missing required argument 'sourceipaddressnetworkid'")
+        if not 'sourceport' in args:
+            raise RuntimeError("Missing required argument 'sourceport'")
+
+        return self.request('createLoadBalancer', args)
 
     def createLoadBalancerRule(self, args={}):
         '''
