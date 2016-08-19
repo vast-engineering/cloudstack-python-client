@@ -5267,7 +5267,7 @@ class Client(BaseClient):
 
     def createAffinityGroup(self, args={}):
         '''
-        Delete resource tag(s)
+        Create affinity group
 
         args - A dictionary. The following are options for keys:
                 name - name of the affinity group
@@ -5282,4 +5282,21 @@ class Client(BaseClient):
             raise RuntimeError("Missing required argument 'type'")
 
         return self.request('createAffinityGroup', args)
+
+    def deleteAffinityGroup(self, args={}):
+        '''
+        Delete affinity group
+
+        args - A dictionary. The following are options for keys:
+                name - name of the affinity group. Optional
+                account - an account for the affinity group. Must be used with domainId. Optional
+                domainid - domainId of the account owning the affinity group. Optional
+                id - The ID of the affinity group. Mutually exclusive with name parameter. Optional
+        '''
+        if not 'name' in args:
+            raise RuntimeError("Missing required argument 'name'")
+        if not 'type' in args:
+            raise RuntimeError("Missing required argument 'type'")
+
+        return self.request('deleteAffinityGroup', args)
 
