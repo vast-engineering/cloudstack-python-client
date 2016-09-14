@@ -28,7 +28,7 @@ except ImportError:
 
 setup(
     name             = 'CloudStack',
-    version          = '0.1',
+    version          = '0.2.2',
     description      = "CloudStack API v2.2 Client",
     long_description = "Python interface CloudStack v2.2 API",
     author           = "Jason Hancock",
