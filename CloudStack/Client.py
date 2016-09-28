@@ -5280,3 +5280,23 @@ class Client(BaseClient):
 
         return self.request('deleteAffinityGroup', args)
 
+
+    def listAffinityGroups(self, args={}):
+        '''
+        List affinity group
+
+        args - A dictionary. The following are options for keys:
+            account - list resources by account. Must be used with the domainId parameter. default: false
+            domainid - list only resources belonging to the domain specified. default: false
+            id - list the affinity group by the id provided. default: false
+            isrecursive - defaults to false, but if true, lists all resources from the parent specified by the domainId till leaves. default: false
+            keyword - List by keyword. default: false
+            listall - If set to false, list only resources belonging to the command's caller; if set to true - list resources that the caller is authorized to see. default: false
+            name - lists affinity groups by name. default: false
+            page - default: false
+            pagesize - default: false
+            type - lists affinity groups by type. default: false
+            virtualmachineid - lists affinity groups by virtual machine id. default: false
+        '''
+        return self.request('listAffinityGroups', args)
+
